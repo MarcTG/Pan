@@ -5,7 +5,10 @@
     <div class="col-md-4 col-md-offset-4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1 class="panel-body">Bienvenido {{ auth()->user()->name}}</h1>
+                  
+                    
+                  
+                <h1 class="panel-body">Bienvenido {{ auth()->user()->nombre}}</h1>
             </div>
             <div>
                 <form action="{{ route('logout')}}" method="POST">

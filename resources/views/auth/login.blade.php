@@ -53,8 +53,8 @@
         <form method="post" action="{{ route('login') }}" enctype="multipart/form-data">
             {{ csrf_field() }}                        
 			<div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-                <input  name="name"  placeholder="Ingresa tu username" value="{{ old('name') }}" class="form-control">
-                {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
+                <input  name="id"  placeholder="Ingresa tu username" value="{{ old('id') }}" class="form-control">
+                {!! $errors->first('id', '<span class="help-block">:message</span>') !!}
             </div>                      
 			<div class="form-group {{ $errors->has('password') ? 'has-error' : ''}}">
                 <input type="password" name="password"  placeholder="Ingresa tu contraseña" class="form-control">

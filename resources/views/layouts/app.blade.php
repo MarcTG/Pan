@@ -9,26 +9,26 @@
 <meta name="keywords" content="Responsive, HTML5, admin theme, business, professional, Mouldifi, web design, CSS3">
 <title>Mouldifi | Dashboard</title>
 <!-- Site favicon -->
-<link rel='shortcut icon' type='image/x-icon' href='images/favicon.ico' />
+<link rel='shortcut icon' type='image/x-icon' href='{{ asset('images/favicon.ico') }}' />
 <!-- /site favicon -->
 
 <!-- Entypo font stylesheet -->
-<link href="css/entypo.css" rel="stylesheet">
+<link href="{{ asset('css/entypo.css') }}" rel="stylesheet">
 <!-- /entypo font stylesheet -->
 
 <!-- Font awesome stylesheet -->
-<link href="css/font-awesome.min.css" rel="stylesheet">
+<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
 <!-- /font awesome stylesheet -->
 
 <!-- Bootstrap stylesheet min version -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 <!-- /bootstrap stylesheet min version -->
 
 <!-- Mouldifi core stylesheet -->
-<link href="css/mouldifi-core.css" rel="stylesheet">
+<link href="{{ asset('css/mouldifi-core.css') }}" rel="stylesheet">
 <!-- /mouldifi core stylesheet -->
 
-<link href="css/mouldifi-forms.css" rel="stylesheet">
+<link href="{{ asset('css/mouldifi-forms.css') }}" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -59,11 +59,11 @@
 		
 		<!-- Main navigation -->
 		<ul id="side-nav" class="main-menu navbar-collapse collapse">
-			<li class="has-sub active "><a href="index.html"><i class="icon-gauge"></i><span class="title">Dashboard</span></a>
+			<li class="has-sub active "><a href="index.html"><i class="icon-gauge"></i><span class="title">Usuarios</span></a>
 				<ul class="nav">
-                    <li class="active"><a href="{{Route('view.users')}}"><span class="title">Misc.</span></a></li>
-					<li><a href="ecommerce-dashboard.html"><span class="title">E-Commerce</span></a></li>
-					<li><a href="news-dashboard.html"><span class="title">News Portal</span></a></li>
+          <li class="active"><a href="{{Route('view.users')}}"><span class="title">Gestionar Usuarios</span></a></li>
+					<li><a href=""><span class="title">Gestionar Cargos</span></a></li>
+
 				</ul>
 			</li>
 		</ul>
@@ -89,7 +89,7 @@
 				  <li><a href="#/"><i class="icon-mail"></i>Messages</a></li>
 				  <li><a href="#"><i class="icon-clipboard"></i>Tasks</a></li>
 				  <li class="divider"></li>
-				  <li><a href="#"><i class="icon-cog"></i>Account settings</a></li>
+					<li><a href="#"><i class="icon-cog"></i>Account settings</a></li>
 				  <li><a href="{{Route('logout')}}"><i class="icon-logout"></i>Logout</a></li>
 				</ul>
 				<!-- /user action menu -->

@@ -16,13 +16,13 @@ class LoginController extends Controller
     }
     public function login()
     {
-
         $credencials= $this->validate(request(),[
             $this->username() => 'required|string',
             'password' => 'required|string'
         ]);
         if(Auth::attempt($credencials))
         {
+            
             return redirect()->route('dashboard');
         }
         return back()
@@ -36,6 +36,6 @@ class LoginController extends Controller
         return redirect('/');
     }
     public function username(){
-        return 'name';
+        return 'id';
     }
 }
