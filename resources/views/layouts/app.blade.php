@@ -59,7 +59,7 @@
 		
 		<!-- Main navigation -->
 		<ul id="side-nav" class="main-menu navbar-collapse collapse">
-			<li class="has-sub active "><a href="index.html"><i class="icon-gauge"></i><span class="title">Usuarios</span></a>
+			<li class="has-sub active "><a href="#"><i class="icon-gauge"></i><span class="title">Usuarios</span></a>
 				<ul class="nav">
           <li class="active"><a href="{{Route('view.users')}}"><span class="title">Gestionar Usuarios</span></a></li>
 					<li><a href=""><span class="title">Gestionar Cargos</span></a></li>
@@ -67,6 +67,15 @@
 				</ul>
 			</li>
 		</ul>
+		<ul id="side-nav" class="main-menu navbar-collapse collapse">
+				<li class="has-sub active "><a href="#"><i class="icon-gauge"></i><span class="title">Inventario</span></a>
+					<ul class="nav">
+						<li class="active"><a href="{{Route('view.medidas')}}"><span class="title">Gestionar Medidas de Unidad</span></a></li>
+						<li class="active"><a href="{{Route('view.materia_primas')}}"><span class="title">Gestionar Materia Prima</span></a></li>
+	
+					</ul>
+				</li>
+			</ul>
 		<!-- /main navigation -->		
   </div>
   <!-- /page sidebar -->
