@@ -30,6 +30,7 @@
 
 <link href="{{ asset('css/mouldifi-forms.css') }}" rel="stylesheet">
 
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -61,8 +62,8 @@
 		<ul id="side-nav" class="main-menu navbar-collapse collapse">
 			<li class="has-sub active "><a href="#"><i class="icon-gauge"></i><span class="title">Usuarios</span></a>
 				<ul class="nav">
-          <li class="active"><a href="{{Route('view.users')}}"><span class="title">Gestionar Usuarios</span></a></li>
-					<li><a href=""><span class="title">Gestionar Cargos</span></a></li>
+          <li class="active"><a href="{{Route('view.users')}}"><span class="title">Usuarios</span></a></li>
+					<li><a href=""><span class="title">Cargos</span></a></li>
 
 				</ul>
 			</li>
@@ -70,9 +71,10 @@
 		<ul id="side-nav" class="main-menu navbar-collapse collapse">
 				<li class="has-sub active "><a href="#"><i class="icon-gauge"></i><span class="title">Inventario</span></a>
 					<ul class="nav">
-						<li class="active"><a href="{{Route('view.medidas')}}"><span class="title">Gestionar Medidas de Unidad</span></a></li>
-						<li class="active"><a href="{{Route('view.materia_primas')}}"><span class="title">Gestionar Materia Prima</span></a></li>
-	
+						<li class="active"><a href="{{Route('view.medidas')}}"><span class="title">Medidas de Unidad</span></a></li>
+						<li class="active"><a href="{{Route('view.materia_primas')}}"><span class="title">Materia Prima</span></a></li>
+						<li class="active"><a href="{{Route('view.proveedors')}}"><span class="title">Proveedores</span></a></li>
+						<li class="active"><a href="{{Route('index.comprobante')}}"><span class="title">Comprobantes</span></a></li>
 					</ul>
 				</li>
 			</ul>
@@ -89,7 +91,7 @@
 		  
 			<!-- User info -->
 			<ul class="user-info pull-left">          
-			  <li class="profile-info dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false"> <img width="44" class="img-circle avatar" alt="" src="images/man-3.jpg">John Henderson <span class="caret"></span></a>
+			  <li class="profile-info dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false"> Bienvenido <span class="caret"></span></a>
 			  
 				<!-- User action menu -->
 				<ul class="dropdown-menu">
@@ -179,6 +181,24 @@
 
 <!--ChartJs-->
 <script src="js/plugins/chartjs/Chart.min.js"></script>
+
+<script src="http://code.jquery.com/jquery.js"></script>
+ 
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script>
+var row = 1;
+$(function() {
+  $('#AddPerson').click(function(e) {
+    e.preventDefault();
+    var template = $('#template')
+      .clone()                        // CLONE THE TEMPLATE
+      .attr('id', 'row' + (row++))    // MAKE THE ID UNIQUE
+      .appendTo($('#myTable tbody'))  // APPEND TO THE TABLE
+      .show();                        // SHOW IT
+  });
+});
+</script>
 
 </body>
 

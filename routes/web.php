@@ -4,12 +4,20 @@
 
 Route::get('/', 'Auth\LoginController@showLoginForm');
 
+Route::post('/login', 'Auth\LoginController@login')->name('login');
+
+Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+
 //usuarios
 Route::get('/usuario', 'UserController@viewUsers')->name('view.users');
 
 Route::get('/usuario/crear', 'UserController@create')->name('create.user');
 
-Route::post('/usuario/save', 'UserController@store')->name('create.user');
+Route::post('/usuario/save', 'UserController@store')->name('store.user');
+
+
 
 Route::get('/usuario/eliminar/{user}', 'UserController@destroy')->name('delete.user');
 
@@ -30,7 +38,6 @@ Route::get('/medida/editar/{medida}', 'MedidaController@edit')->name('edit.medid
 
 Route::post('/medida/update/{medida}','MedidaController@update')->name('update.medida');
 
-//
 //materia
 Route::get('/materia_prima', 'MateriaPrimaController@index')->name('view.materia_primas');
 
@@ -44,12 +51,25 @@ Route::get('/materia_prima/editar/{materia_prima}', 'MateriaPrimaController@edit
 
 Route::post('/materia_prima/update/{materia_prima}','MateriaPrimaController@update')->name('update.materia_prima');
 
+//Proveedor
+Route::get('/proveedor', 'ProveedorController@index')->name('view.proveedors');
 
+Route::get('/proveedor/crear', 'ProveedorController@create')->name('create.proveedor');
 
-Route::post('/registrarUsuario', 'UserController@store')->name('create.user');
+Route::post('/proveedor/guardar', 'ProveedorController@store')->name('store.proveedor');
 
-Route::post('/login', 'Auth\LoginController@login')->name('login');
+Route::get('/proveedor/eliminar/{proveedor}', 'ProveedorController@destroy')->name('delete.proveedor');
 
-Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('/proveedor/editar/{proveedor}', 'ProveedorController@edit')->name('edit.proveedor');
 
-Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+Route::post('/proveedor/update/{proveedor}','ProveedorController@update')->name('update.proveedor');
+
+//Comprobante
+Route::get('comprobante', 'ComprobanteController@index')->name('index.comprobante');
+
+Route::get('comprobante/ver/{id}', 'ComprobanteController@view')->name('view.comprobante');
+
+Route::get('comprobante/crear', 'ComprobanteController@create')->name('create.comprobante');
+
+Route::post('comprobante/guardar', 'ComprobanteController@store')->name('store.comprobante');
+

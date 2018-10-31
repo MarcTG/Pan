@@ -16,16 +16,10 @@
                     <th scope="row">{{$user->id}}</th>
                     <td>{{$user->nombre.' '.$user->apellidoP.' '.$user->apellidoM}}</td>
                     <td>{{$user->telefono}}</td>
-                    <td class="text-center">
-                            <div class="dropdown">
-                                <a class="more-link" data-toggle="dropdown" href="#/"><i class="icon-dot-3 ellipsis-icon"></i></a>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a href="{{route('edit.user', $user)}}">Editar</a></li>
-                                    <li><a href="{{route('delete.user', $user)}}">Eliminar</a></li>
-                                    
-                                </ul>
-                            </div>
-                        </td>
+                    <td><a class="btn btn-primary" href="{{route('edit.user', $user)}}">Editar</a>
+                    <a class="btn btn-danger" href="{{route('delete.user', $user)}}">Eliminar</a></td>                
+                                  
+                    
                 </tr> 
             @endforeach
         
