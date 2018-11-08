@@ -8,22 +8,60 @@ Route::post('/login', 'Auth\LoginController@login')->name('login');
 
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
+Route::middleware(['auth'])->group(function(){
+
+    Route::get('roles/', 'RoleController@index')->name('roles.view')
+        ->middleware('permission:index.roles');
+
+    Route::post('roles/store', 'RoleController@store')->name('store.role')
+        ->middleware('permission:store.roles');
+
+    Route::get('roles/create', 'RoleController@create')->name('create.role')
+        ->middleware('permission:create.roles');
+
+    Route::put('roles/{role}', 'RoleController@update')->name('roles.update')
+        ->middleware('permission:update.roles'); 
+
+    Route::get('roles/{role}', 'RoleController@show')->name('show.roles')
+        ->middleware('permission:show.roles');
+
+    Route::delete('roles/{role}', 'RoleController@delete')->name('destroy.role')
+        ->middleware('permission:store.roles');      
+
+    Route::get('roles/{role}/edit', 'RoleController@edit')->name('roles.edit')
+        ->middleware('permission:edit.roles');
+
+    //usuarios
+    Route::get('/usuario', 'UserController@viewUsers')->name('view.users')
+        ->middleware('permission:view.users');
+
+    Route::get('/usuario/crear', 'UserController@create')->name('create.user')
+    ->middleware('permission:create.users');
+
+    Route::post('/usuario/save', 'UserController@store')->name('store.user')
+    ->middleware('permission:create.users');
+
+    Route::get('/usuario/eliminar/{user}', 'UserController@destroy')->name('delete.user')
+    ->middleware('permission:destroy.users');
+
+    Route::get('/usuario/editar/{user}', 'UserController@edit')->name('edit.user')
+    ->middleware('permission:edit.users');
+
+    Route::post('/usuario/update/{user}','UserController@update')->name('update.user')
+    ->middleware('permission:edit.users');
+    
+    //Comprobante
+    Route::get('comprobante', 'ComprobanteController@index')->name('index.comprobante');
+
+    Route::get('comprobante/ver/{id}', 'ComprobanteController@view')->name('view.comprobante');
+
+    Route::get('comprobante/crear', 'ComprobanteController@create')->name('create.comprobante');
+
+    Route::post('comprobante/guardar', 'ComprobanteController@store')->name('store.comprobante');
+});
 Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
-//usuarios
-Route::get('/usuario', 'UserController@viewUsers')->name('view.users');
 
-Route::get('/usuario/crear', 'UserController@create')->name('create.user');
-
-Route::post('/usuario/save', 'UserController@store')->name('store.user');
-
-
-
-Route::get('/usuario/eliminar/{user}', 'UserController@destroy')->name('delete.user');
-
-Route::get('/usuario/editar/{user}', 'UserController@edit')->name('edit.user');
-
-Route::post('/usuario/update/{user}','UserController@update')->name('update.user');
 
 //medidas
 Route::get('/medidas', 'MedidaController@index')->name('view.medidas');
@@ -64,12 +102,5 @@ Route::get('/proveedor/editar/{proveedor}', 'ProveedorController@edit')->name('e
 
 Route::post('/proveedor/update/{proveedor}','ProveedorController@update')->name('update.proveedor');
 
-//Comprobante
-Route::get('comprobante', 'ComprobanteController@index')->name('index.comprobante');
 
-Route::get('comprobante/ver/{id}', 'ComprobanteController@view')->name('view.comprobante');
-
-Route::get('comprobante/crear', 'ComprobanteController@create')->name('create.comprobante');
-
-Route::post('comprobante/guardar', 'ComprobanteController@store')->name('store.comprobante');
 

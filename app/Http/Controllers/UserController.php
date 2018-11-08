@@ -7,6 +7,9 @@ use App\User;
 use Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Caffeinated\Shinobi\Models\Role;
+use Illuminate\Support\Facades\DB;
+
 class UserController extends Controller
 {
     public function viewUsers(){
@@ -18,7 +21,7 @@ class UserController extends Controller
     
     public function create(){
 
-        return view('users.createUser');
+        return view('users.createUser')->with('roles',Role::all());
 
     }
     /**
@@ -43,8 +46,11 @@ class UserController extends Controller
         $user->apellidoM=$request->apellidoM;
         $user->telefono=$request->telefono;
         $user->password=Hash::make($request->password);
-
         $user->save();
+        DB::table('role_user')->insert(
+            array('role_id' => $request->get('rol'),
+             'user_id' => $request->id));   
+        
         return redirect()->route('view.users');
     }
 

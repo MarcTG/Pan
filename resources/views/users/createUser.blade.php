@@ -12,7 +12,7 @@
                             @csrf
 
                             <div class="form-group row">
-                                <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('id') }}</label>
+                                <label for="id" class="col-md-4 col-form-label text-md-right">{{ __('CI') }}</label>
                                 <div class="col-md-6">
                                     
                                     <input type="text" class="form-control" name='id' placeholder="CI" required autofocus>
@@ -21,7 +21,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('nombre') }}</label>
+                                <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
     
                                 <div class="col-md-6">
                                     <input id="nombre" type="text" class="form-control{{ $errors->has('nombre') ? ' is-invalid' : '' }}" name="nombre" value="{{ old('nombre') }}" required >
@@ -36,7 +36,7 @@
                             
                             <div class="form-group row">
 
-                                <label for="apellidoP" class="col-md-4 col-form-label text-md-right">{{ __('apellidoP') }}</label>
+                                <label for="apellidoP" class="col-md-4 col-form-label text-md-right">{{ __('Apellido Paterno') }}</label>
 
                                 <div class="col-md-6">
                                     
@@ -46,7 +46,7 @@
                             </div>
                             <div class="form-group row">
 
-                                    <label for="apellidoM" class="col-md-4 col-form-label text-md-right">{{ __('apellidoM') }}</label>
+                                    <label for="apellidoM" class="col-md-4 col-form-label text-md-right">{{ __('Apellido Materno') }}</label>
     
                                     <div class="col-md-6">
                                         
@@ -56,7 +56,7 @@
                                 </div>
                             <div class="form-group row">
                                 
-                                <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('telefono') }}</label>
+                                <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Telefono') }}</label>
 
                                 <div class="col-md-6">
                                     
@@ -64,12 +64,22 @@
                                 </div>
                                         
                             </div>
-
+                            <div class="form-group row"> 
+                                    <label class="col-sm-4 control-label">Role</label> 
+                                    <div class="col-sm-6"> 
+                                        <select class="select2 form-control" name="rol">
+                                            @foreach ($roles as $role)
+                                                <option value="{{$role->id}}"  >{{$role->name}}</option>
+                                            @endforeach
+                                            
+                                        </select>
+                                    </div> 
+                                </div>
                             
                             
     
                             <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
     
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
@@ -83,7 +93,7 @@
                             </div>
     
                             <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar contraseña') }}</label>
     
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>

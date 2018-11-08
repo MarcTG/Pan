@@ -62,19 +62,56 @@
 		<ul id="side-nav" class="main-menu navbar-collapse collapse">
 			<li class="has-sub active "><a href="#"><i class="icon-gauge"></i><span class="title">Usuarios</span></a>
 				<ul class="nav">
-          <li class="active"><a href="{{Route('view.users')}}"><span class="title">Usuarios</span></a></li>
-					<li><a href=""><span class="title">Cargos</span></a></li>
+					@can('view.users')
+						<li class="active"><a href="{{Route('view.users')}}"><span class="title">Usuarios</span></a></li>	
+					@endcan
+          @can('index.rol')
+						<li><a href="{{Route('roles.view')}}"><span class="title">Cargos</span></a></li>	
+					@endcan
+					
 
 				</ul>
 			</li>
 		</ul>
 		<ul id="side-nav" class="main-menu navbar-collapse collapse">
+			<li class="has-sub active "><a href="#"><i class="icon-gauge"></i><span class="title">Usuarios</span></a>
+				<ul class="nav">
+					
+					
+
+				</ul>
+			</li>
+		</ul>
+		<ul id="side-nav" class="main-menu navbar-collapse collapse">
+				<li class="has-sub active "><a href="#"><i class="icon-gauge"></i><span class="title">Usuarios</span></a>
+					<ul class="nav">
+						
+						
+	
+					</ul>
+				</li>
+			</ul>
+		<ul id="side-nav" class="main-menu navbar-collapse collapse">
 				<li class="has-sub active "><a href="#"><i class="icon-gauge"></i><span class="title">Inventario</span></a>
 					<ul class="nav">
-						<li class="active"><a href="{{Route('view.medidas')}}"><span class="title">Medidas de Unidad</span></a></li>
-						<li class="active"><a href="{{Route('view.materia_primas')}}"><span class="title">Materia Prima</span></a></li>
+						@can('view.medidas')
+						<li class="active"><a href="{{Route('view.medidas')}}"><span class="title">Medidas de Unidad</span></a></li>		
+						@endcan
+						
+						@can('view.materia_primas')
+						<li class="active"><a href="{{Route('view.materia_primas')}}"><span class="title">Materia Prima</span></a></li>	
+						@endcan
+
+						@can('view.proveedors')
 						<li class="active"><a href="{{Route('view.proveedors')}}"><span class="title">Proveedores</span></a></li>
-						<li class="active"><a href="{{Route('index.comprobante')}}"><span class="title">Comprobantes</span></a></li>
+						@endcan
+						
+						
+						
+						@can('index.comprobante')
+							<li class="active"><a href="{{Route('index.comprobante')}}"><span class="title">Comprobantes</span></a></li>	
+						@endcan
+						
 					</ul>
 				</li>
 			</ul>
@@ -87,63 +124,28 @@
   
 		<!-- Main header -->
 		<div class="main-header row">
-		  <div class="col-sm-6 col-xs-7">
+		  <div class="col-sm-6 col-xs-7 pull-right">
 		  
 			<!-- User info -->
-			<ul class="user-info pull-left">          
-			  <li class="profile-info dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false"> Bienvenido <span class="caret"></span></a>
+			
 			  
 				<!-- User action menu -->
-				<ul class="dropdown-menu">
-				  
-				  <li><a href="#/"><i class="icon-user"></i>My profile</a></li>
-				  <li><a href="#/"><i class="icon-mail"></i>Messages</a></li>
-				  <li><a href="#"><i class="icon-clipboard"></i>Tasks</a></li>
-				  <li class="divider"></li>
-					<li><a href="#"><i class="icon-cog"></i>Account settings</a></li>
-				  <li><a href="{{Route('logout')}}"><i class="icon-logout"></i>Logout</a></li>
-				</ul>
+				
+				<form action="{{ route('logout')}}" method="POST">
+						@csrf
+						<button type="submit" class="btn btn-danger">Cerrar session</button>
+				</form>
+				
 				<!-- /user action menu -->
 				
-			  </li>
-			</ul>
+			  
+	
 			<!-- /user info -->
 			
 		  </div>
 		  
 		  <div class="col-sm-6 col-xs-5">
-			<div class="pull-right">
-				<!-- User alerts -->
-				<ul class="user-info pull-left">
-				
-				  <!-- Notifications -->
-				  <li class="notifications dropdown">
-					<a data-close-others="true" data-hover="dropdown" data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-attention"></i><span class="badge badge-info">6</span></a>
-					<ul class="dropdown-menu pull-right">
-						<li class="first">
-							<div class="small"><a class="pull-right danger" href="#">Mark all Read</a> You have <strong>3</strong> new notifications.</div>
-						</li>
-						<li>
-							<ul class="dropdown-list">
-								<li class="unread notification-success"><a href="#"><i class="icon-user-add pull-right"></i><span class="block-line strong">New user registered</span><span class="block-line small">30 seconds ago</span></a></li>
-								<li class="unread notification-secondary"><a href="#"><i class="icon-heart pull-right"></i><span class="block-line strong">Someone special liked this</span><span class="block-line small">60 seconds ago</span></a></li>
-								<li class="unread notification-primary"><a href="#"><i class="icon-user pull-right"></i><span class="block-line strong">Privacy settings have been changed</span><span class="block-line small">2 hours ago</span></a></li>
-								<li class="notification-danger"><a href="#"><i class="icon-cancel-circled pull-right"></i><span class="block-line strong">Someone special liked this</span><span class="block-line small">60 seconds ago</span></a></li>
-								<li class="notification-info"><a href="#"><i class="icon-info pull-right"></i><span class="block-line strong">Someone special liked this</span><span class="block-line small">60 seconds ago</span></a></li>
-								<li class="notification-warning"><a href="#"><i class="icon-rss pull-right"></i><span class="block-line strong">Someone special liked this</span><span class="block-line small">60 seconds ago</span></a></li>
-							</ul>
-						</li>
-						<li class="external-last"> <a href="#" class="danger">View all notifications</a> </li>
-					</ul>
-				  </li>
-				  <!-- /notifications -->
-				  
-				  
-				  
-				</ul>
-				<!-- /user alerts -->
-				
-			</div>
+			
 		  </div>
 		</div>
 		<!-- /main header -->
