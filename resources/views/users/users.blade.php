@@ -17,9 +17,7 @@
                     <td>{{$user->nombre.' '.$user->apellidoP.' '.$user->apellidoM}}</td>
                     <td>{{$user->telefono}}</td>
                     <td><a class="btn btn-primary" href="{{route('edit.user', $user)}}">Editar</a>
-                    <a class="btn btn-danger" href="{{route('delete.user', $user)}}">Eliminar</a></td>                
-                                  
-                    
+                    <a class="btn btn-danger" href="{{route('delete.user', $user)}}">Eliminar</a></td>                           
                 </tr> 
             @endforeach
         

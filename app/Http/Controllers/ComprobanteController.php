@@ -9,7 +9,8 @@ use App\User;
 use App\Comprobante;
 use App\MateriaPrima;
 use Illuminate\Support\Facades\DB;
-
+use Auth;
+use App\bitacora;
 class ComprobanteController extends Controller
 {
     public function index(){
@@ -56,6 +57,10 @@ class ComprobanteController extends Controller
             $materia->addCantidad(intval($request->cantidad[$i]));
             
         }
+
+        $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Crear Comprobante', 'tabla' => 'Comprobante', 'idTabla' => $comprobante->id  ];
+        bitacora::create($bitacora);
+
         return redirect()->route('index.comprobante');
     }
     public function view($id){

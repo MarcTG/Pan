@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Auth;
-
+use App\bitacora;
 class LoginController extends Controller
 {
     public function __construct()
@@ -22,7 +22,8 @@ class LoginController extends Controller
         ]);
         if(Auth::attempt($credencials))
         {
-            
+            $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Login' ];
+            bitacora::create($bitacora);
             return redirect()->route('dashboard');
         }
         return back()
@@ -31,11 +32,16 @@ class LoginController extends Controller
     }
     public function logout()
     {
+        $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Logout' ];
+
         Auth::logout();
-        
+
+        bitacora::create($bitacora);
+
         return redirect('/');
     }
     public function username(){
         return 'id';
     }
+
 }

@@ -10,6 +10,8 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::middleware(['auth'])->group(function(){
 
+    Route::get('bitacora/', 'BitacoraController@index')->name('bitacora');
+
     Route::get('roles/', 'RoleController@index')->name('roles.view')
         ->middleware('permission:index.roles');
 

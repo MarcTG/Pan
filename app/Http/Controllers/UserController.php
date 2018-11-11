@@ -9,17 +9,21 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Caffeinated\Shinobi\Models\Role;
 use Illuminate\Support\Facades\DB;
+use App\bitacora;
 
 class UserController extends Controller
 {
     public function viewUsers(){
 
+
+        
         return view('users.users')->with('users', User::all());
 
     }
     
     
     public function create(){
+
 
         return view('users.createUser')->with('roles',Role::all());
 
@@ -31,6 +35,8 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
+
+
 
         $this->validate($request, [
             'id' => 'required|string|max:8',
@@ -51,6 +57,9 @@ class UserController extends Controller
             array('role_id' => $request->get('rol'),
              'user_id' => $request->id));   
         
+        $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Crear usuario', 'tabla' => 'Usuarios', 'idTabla' => $request->id  ];
+        bitacora::create($bitacora);     
+
         return redirect()->route('view.users');
     }
 
@@ -75,6 +84,10 @@ class UserController extends Controller
         $user->password=Hash::make($request->password);
 
         $user->save();
+
+        $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Editar usuario', 'tabla' => 'Usuarios', 'idTabla' => $request->id  ];
+        bitacora::create($bitacora);
+
         return redirect()->route('view.users');
     }
 
@@ -87,12 +100,18 @@ class UserController extends Controller
     public function destroy(User $user){
 
         $user->delete();
+
+        $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Eliminar usuario', 'tabla' => 'Usuarios', 'idTabla' => $user->id  ];
+        bitacora::create($bitacora);
+
         return redirect()->back();
 
     }
 
     public function logout(){
         Auth::logout();
+        $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Logout' ];
+            bitacora::create($bitacora);
         return redirect('/');
     }
 

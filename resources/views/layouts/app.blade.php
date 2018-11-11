@@ -65,9 +65,10 @@
 					@can('view.users')
 						<li class="active"><a href="{{Route('view.users')}}"><span class="title">Usuarios</span></a></li>	
 					@endcan
-          @can('index.rol')
+          			@can('index.rol')
 						<li><a href="{{Route('roles.view')}}"><span class="title">Cargos</span></a></li>	
 					@endcan
+					<li><a href="{{Route('bitacora')}}"><span class="title">Bitacora</span></a></li>
 					
 
 				</ul>

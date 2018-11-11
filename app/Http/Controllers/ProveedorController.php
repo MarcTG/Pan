@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Proveedor;
+use Auth;
+use App\bitacora;
+
 class ProveedorController extends Controller
 {
     public function index()
@@ -18,7 +21,9 @@ class ProveedorController extends Controller
 
     public function destroy(Proveedor $proveedor)
     {
-        
+        $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Eliminar', 'tabla' => 'Proveedor', 'idTabla' => $proveedor->id  ];
+        bitacora::create($bitacora);
+
         $proveedor->delete();
         return redirect()->back();
     }
@@ -43,6 +48,10 @@ class ProveedorController extends Controller
         $proveedor->telefono=$request->telefono;
         
         $proveedor->save();
+
+        $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Editar', 'tabla' => 'Proveedor', 'idTabla' => $proveedor->id  ];
+        bitacora::create($bitacora);
+
         return redirect()->route('view.proveedors');
     }
 
@@ -61,6 +70,10 @@ class ProveedorController extends Controller
         $proveedor->telefono=$request->telefono;
         
         $proveedor->save();
+
+        $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Crear', 'tabla' => 'Proveedor', 'idTabla' => $proveedor->id  ];
+        bitacora::create($bitacora);
+
         return redirect()->route('view.proveedors');
     }    
 }

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\MateriaPrima;
 use App\Medida;
+use Auth;
+use App\bitacora;
+
 class MateriaPrimaController extends Controller
 {
     public function index()
@@ -35,12 +38,18 @@ class MateriaPrimaController extends Controller
         $materiaPrima->nombre=$request->nombre;
         $materiaPrima->medida_id=$request->medida;
         $materiaPrima->save();
+
+        $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Crear', 'tabla' => 'Materia Prima', 'idTabla' => $materiaPrima->id  ];
+        bitacora::create($bitacora);
+
         return redirect()->route('view.materia_primas');
     }
 
     public function destroy(MateriaPrima $materiaPrima)
     {
         $materiaPrima->delete();
+        $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Eliminar', 'tabla' => 'Materia Prima', 'idTabla' => $materiaPrima->id  ];
+        bitacora::create($bitacora);
         return redirect()->back();
     }
 
@@ -61,6 +70,8 @@ class MateriaPrimaController extends Controller
         $materiaPrima->nombre=$request->nombre;
         $materiaPrima->medida_id=$request->medida;
         $materiaPrima->save();
+        $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Editar', 'tabla' => 'Materia Prima', 'idTabla' => $materiaPrima->id  ];
+        bitacora::create($bitacora);
         return redirect()->route('view.materia_primas');
     }
 

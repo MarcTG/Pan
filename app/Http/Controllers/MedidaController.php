@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 use App\Medida;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use Auth;
+use App\bitacora;
 class MedidaController extends Controller
 {
     public function index()
@@ -20,6 +21,10 @@ class MedidaController extends Controller
     public function destroy(Medida $medida)
     {
         $medida->delete();
+
+        $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Eliminar', 'tabla' => 'Medida', 'idTabla' => $medida->id  ];
+        bitacora::create($bitacora);
+
         return redirect()->back();
     }
 
@@ -40,6 +45,10 @@ class MedidaController extends Controller
         $medida->nombre=$request->nombre;
         $medida->abreviatura=$request->abreviatura;
         $medida->save();
+
+        $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Editar', 'tabla' => 'Medida', 'idTabla' => $medida->id  ];
+        bitacora::create($bitacora);
+        
         return redirect()->route('view.medidas');
     }
 
@@ -55,6 +64,10 @@ class MedidaController extends Controller
         $medida->nombre=$request->nombre;
         $medida->abreviatura=$request->abreviatura;
         $medida->save();
+
+        $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Crear', 'tabla' => 'Medida', 'idTabla' => $medida->id  ];
+        bitacora::create($bitacora);
+
         return redirect()->route('view.medidas');
     }
 }
