@@ -11,14 +11,10 @@
                     <h4>Total: {{$comprobante->total}} </h4>
                 </div>
                 <div class="">
-                        <div class="panel panel-default">
+                        <div class="panel panel-primary">
                             <div class="panel-heading clearfix">
                                 <h3 class="panel-title">Striped Rows</h3>
-                                <ul class="panel-tool-options"> 
-                                    <li><a data-rel="collapse" href="#"><i class="icon-down-open"></i></a></li>
-                                    <li><a data-rel="reload" href="#"><i class="icon-arrows-ccw"></i></a></li>
-                                    <li><a data-rel="close" href="#"><i class="icon-cancel"></i></a></li>
-                                </ul>
+                                
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
@@ -33,7 +29,6 @@
                                         <tbody>
                                             @foreach ($detalles as $detalle)
                                                 <tr> 
-                                                    
                                                     <td>{{$detalle->nombre}}</td> 
                                                     <td>{{$detalle->precio}}</td> 
                                                     <td>{{$detalle->cantidad}}</td> 
@@ -47,6 +42,7 @@
                             </div>
                         </div>
                     </div>
+                    <a class="btn btn-danger" href="{{route('delete.comprobante', $comprobante->id)}}">Anular</a>
             </div>
        </div>
 @endsection

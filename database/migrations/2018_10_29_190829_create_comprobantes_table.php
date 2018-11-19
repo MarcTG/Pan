@@ -19,6 +19,7 @@ class CreateComprobantesTable extends Migration
             $table->unsignedInteger('idEmpleado');
             $table->unsignedDecimal('total', 8, 2);
             $table->date('fecha');
+            $table->boolean('estado')->default(1);
             $table->foreign('idProveedor')->references('id')->on('proveedors');
             $table->foreign('idEmpleado')->references('id')->on('users');
             $table->timestamps();

@@ -18,7 +18,7 @@ class CreateProveedorsTable extends Migration
             $table->string('Nombre');
             $table->string('Direccion');
             $table->unsignedInteger('telefono');
-
+            $table->boolean('estado')->default(1);
             $table->timestamps();
         });
     }

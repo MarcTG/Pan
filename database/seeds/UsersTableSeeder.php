@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use Caffeinated\Shinobi\Models\Role; 
-
+use Illuminate\Support\Facades\DB;
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -27,5 +27,8 @@ class UsersTableSeeder extends Seeder
             'slug' => 'admin',
             'special' => 'all-access'
         ]);
+        DB::table('role_user')->insert(
+            array('role_id' => 1,
+             'user_id' => 123));
     }
 }

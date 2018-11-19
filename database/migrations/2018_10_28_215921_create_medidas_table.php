@@ -17,7 +17,7 @@ class CreateMedidasTable extends Migration
             $table->increments('id');
             $table->string('abreviatura');
             $table->string('nombre');
-            
+            $table->boolean('estado')->default(true);
             $table->timestamps();
         });
     }

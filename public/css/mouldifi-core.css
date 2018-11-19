@@ -280,7 +280,7 @@ a.text-purple:hover, a.text-purple:focus {
 }
 .site-header {
 	overflow: hidden;
-	padding: 25px 20px;
+	padding: 10px 10px;
 	position: relative;
 	z-index: 101;
 }

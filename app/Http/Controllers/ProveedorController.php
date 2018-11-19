@@ -11,7 +11,7 @@ class ProveedorController extends Controller
 {
     public function index()
     {
-        return view('proveedors.proveedor')->with('proveedors', Proveedor::all());
+        return view('proveedors.proveedor')->with('proveedors', Proveedor::all()->where('estado', true));
     }
 
     public function create()
@@ -24,8 +24,9 @@ class ProveedorController extends Controller
         $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Eliminar', 'tabla' => 'Proveedor', 'idTabla' => $proveedor->id  ];
         bitacora::create($bitacora);
 
-        $proveedor->delete();
-        return redirect()->back();
+        $proveedor->estado = false;
+        $proveedor->save();
+        return redirect()->back()->with('info', 'Eliminado con éxito');
     }
 
     public function edit(Proveedor $proveedor)
@@ -52,7 +53,7 @@ class ProveedorController extends Controller
         $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Editar', 'tabla' => 'Proveedor', 'idTabla' => $proveedor->id  ];
         bitacora::create($bitacora);
 
-        return redirect()->route('view.proveedors');
+        return redirect()->route('view.proveedors')->with('info', 'Actualizado con éxito');
     }
 
     public function store(Request $request)
@@ -74,6 +75,6 @@ class ProveedorController extends Controller
         $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Crear', 'tabla' => 'Proveedor', 'idTabla' => $proveedor->id  ];
         bitacora::create($bitacora);
 
-        return redirect()->route('view.proveedors');
+        return redirect()->route('view.proveedors')->with('info', 'Creado con éxito');
     }    
 }

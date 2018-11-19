@@ -2,51 +2,51 @@
 
 @section('content')
 
-<div class="row">
-    <div class="col-lg-6">
-            <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Roles
-                        @can('roles.create')
+
+<div class="col-lg-12">
+        
+        @if (session('info'))
+            <div class="alert alert-success" role="alert">
+                    {{session('info')}}
+            </div>
+        @endif
+        <div class="panel panel-primary ">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title">Roles</h3>
+                @can('create.role')
                         <a href="{{ route('create.role') }}" 
-                        class="btn btn-sm btn-primary pull-right">
+                        class="btn btn-sm btn-success pull-right">
                             Crear
                         </a>
                         @endcan
-                    </div>
-    
-                    <div class="panel-body">
-                        <table class="table table-striped table-hover">
-                            <thead>
-                                <tr>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover dataTables-example" >
+                        <thead>
+                            <tr>
                                     <th width="10px">ID</th>
                                     <th>Nombre</th>
-                                    <th colspan="3">&nbsp;</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                                    <th>Accion</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
                                 @foreach($roles as $role)
                                 <tr>
                                     <td>{{ $role->id }}</td>
                                     <td>{{ $role->name }}</td>
-                                    @can('roles.show')
-                                    <td width="10px">
-                                        <a href="{{ route('show.roles', $role->id) }}" 
-                                        class="btn btn-sm btn-default">
-                                            ver
-                                        </a>
-                                    </td>
-                                    @endcan
+                                    <td>
                                     @can('roles.edit')
-                                    <td width="10px">
+                                    
                                         <a href="{{ route('roles.edit', $role->id) }}" 
-                                        class="btn btn-sm btn-default">
+                                        class="btn btn-sm btn-primary">
                                             editar
                                         </a>
-                                    </td>
+                                    
                                     @endcan
-                                    @can('roles.destroy')
-                                    <td width="10px">
+                                    @can('destroy.role')
+                                    
                                         {!! Form::open(['route' => ['destroy.role', $role->id], 
                                         'method' => 'DELETE']) !!}
                                             <button class="btn btn-sm btn-danger">
@@ -57,14 +57,14 @@
                                     @endcan
                                 </tr>
                                 @endforeach
-                            </tbody>
-                        </table>
-                        {{ $roles->render() }}
-                    </div>
+                        </tbody>
+                        
+                    </table>
+                    {{ $roles->render() }}
                 </div>
-    </div>    
-</div>  
-
+            </div>
+        </div>
+    </div>
 
 
 @endsection

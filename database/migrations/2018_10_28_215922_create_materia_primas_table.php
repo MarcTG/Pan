@@ -16,7 +16,8 @@ class CreateMateriaPrimasTable extends Migration
         Schema::create('materia_primas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->unsignedInteger('cantidad');
+            $table->unsignedInteger('cantidad')->default(0);
+            $table->boolean('estado')->default(1);
             $table->unsignedInteger('medida_id');
             $table->foreign('medida_id')->references('id')->on('medidas');
             $table->timestamps();

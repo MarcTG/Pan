@@ -77,7 +77,7 @@ class ProductoController extends Controller
      *
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
-     */
+    */
     public function destroy(Producto $producto)
     {
         //

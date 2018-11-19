@@ -3,19 +3,19 @@
 @section('content')
 
 <div class="row">
-    <div class="col-lg-10">
-            <div class="panel panel-default">
+    <div class="col-lg-12">
+            <div class="panel panel-primary">
                     <div class="panel-heading">
                         Bitacora
                         
                     </div>
     
-                    <div class="panel-body">
+                    <div class="panel-body ">
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>Hora</th>
                                     <th>Fecha</th>
+                                    <th>Hora</th>
                                     <th>Usuario</th>
                                     <th>Accion</th>
                                     <th>Tabla</th>

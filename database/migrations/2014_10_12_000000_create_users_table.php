@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('apellidoP');
             $table->string('apellidoM');
             $table->integer('telefono')->nullable();      
-            //$table->boolean('estado');
-            //$table->unsignedInteger('cargo_id');
+            $table->boolean('estado')->default(1);
+
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

@@ -17,7 +17,7 @@ class UserController extends Controller
 
 
         
-        return view('users.users')->with('users', User::all());
+        return view('users.users')->with('users', User::all()->where('estado', true));
 
     }
     
@@ -60,7 +60,7 @@ class UserController extends Controller
         $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Crear usuario', 'tabla' => 'Usuarios', 'idTabla' => $request->id  ];
         bitacora::create($bitacora);     
 
-        return redirect()->route('view.users');
+        return redirect()->route('view.users')->with('info', 'Usuario creado con éxito');
     }
 
     public function edit(User $user){
@@ -88,7 +88,7 @@ class UserController extends Controller
         $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Editar usuario', 'tabla' => 'Usuarios', 'idTabla' => $request->id  ];
         bitacora::create($bitacora);
 
-        return redirect()->route('view.users');
+        return redirect()->route('view.users')->with('info', 'Usuario editado con éxito');
     }
 
     /**
@@ -99,12 +99,13 @@ class UserController extends Controller
      */
     public function destroy(User $user){
 
-        $user->delete();
+        
 
         $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Eliminar usuario', 'tabla' => 'Usuarios', 'idTabla' => $user->id  ];
         bitacora::create($bitacora);
-
-        return redirect()->back();
+        $user->estado = false;
+        $user->save();
+        return redirect()->back()->with('info', 'Usuario Eliminado con éxito');
 
     }
 

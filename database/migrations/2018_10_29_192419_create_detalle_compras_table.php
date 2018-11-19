@@ -19,6 +19,7 @@ class CreateDetalleComprasTable extends Migration
             $table->unsignedInteger('idMateria');
             $table->unsignedDecimal('precio',8,2);
             $table->unsignedInteger('cantidad');
+            $table->boolean('estado')->default(1);
             $table->foreign('idComprobante')->references('id')->on('comprobantes');
             $table->foreign('idMateria')->references('id')->on('materia_primas');
             $table->timestamps();

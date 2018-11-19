@@ -3,14 +3,7 @@
 @section('content')
 
 
-<div class="row">
-        
-    
-        <form class="form" action="reflect.php">
-          
-          
-        </form>
-    </div>
+
 
 
 <div class="container">

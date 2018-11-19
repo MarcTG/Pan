@@ -25,12 +25,17 @@
                 <label>
                 {{ Form::checkbox('permissions[]', $permission->id, null) }}
                 {{ $permission->name }}
-                <em>({{ $permission->description }})</em>
+                
+
+                
                 </label>
             </li>
             @endforeach
         </ul>
     </div>
     <div class="form-group">
-        {{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}
+        @can('roles.edit')
+        {{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}    
+        @endcan
+        
     </div>

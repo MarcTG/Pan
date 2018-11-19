@@ -12,17 +12,21 @@ class MateriaPrimaController extends Controller
 {
     public function index()
     {   
-        $materiaPrima=MateriaPrima::all()->toArray();
-        for ($i=0; $i<count($materiaPrima); $i++ ) {
-            $materiaPrima[$i]['medida_id']=Medida::find($materiaPrima[$i]['medida_id'])->nombre;
+        
+        $materiaPrima=MateriaPrima::all()->where('estado', true)->toArray();
+        
+        foreach ($materiaPrima as &$Materia) {
+            $Materia['medida_id']=Medida::find($Materia['medida_id'])->nombre;
         }
+            
+        
        
         return view('materiaPrimas.materiaPrima')->with('materia_primas', $materiaPrima);
     }
 
     public function create()
     {
-        return view('materiaPrimas.create')->with('medidas', Medida::all());
+        return view('materiaPrimas.create')->with('medidas', Medida::all()->where('estado', true));
     }
 
     public function store(Request $request)
@@ -42,15 +46,17 @@ class MateriaPrimaController extends Controller
         $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Crear', 'tabla' => 'Materia Prima', 'idTabla' => $materiaPrima->id  ];
         bitacora::create($bitacora);
 
-        return redirect()->route('view.materia_primas');
+        return redirect()->route('view.materia_primas')->with('info', 'Creado con éxito');
     }
 
     public function destroy(MateriaPrima $materiaPrima)
     {
-        $materiaPrima->delete();
+        $materiaPrima->estado = false;
+        $materiaPrima->save();
         $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Eliminar', 'tabla' => 'Materia Prima', 'idTabla' => $materiaPrima->id  ];
         bitacora::create($bitacora);
-        return redirect()->back();
+
+        return redirect()->back()->with('info', 'Eliminado con éxito');
     }
 
     public function edit(MateriaPrima $materiaPrima)
@@ -70,9 +76,11 @@ class MateriaPrimaController extends Controller
         $materiaPrima->nombre=$request->nombre;
         $materiaPrima->medida_id=$request->medida;
         $materiaPrima->save();
+
         $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Editar', 'tabla' => 'Materia Prima', 'idTabla' => $materiaPrima->id  ];
         bitacora::create($bitacora);
-        return redirect()->route('view.materia_primas');
+
+        return redirect()->route('view.materia_primas')->with('info', 'Editado con éxito');
     }
 
     

@@ -15,11 +15,12 @@ class ComprobanteController extends Controller
 {
     public function index(){
         $comprobantes = DB::table('Comprobantes')
+            ->where('estado', 1)
             ->orderBy('fecha','desc')
             ->get();
             
         $comprobantes->toArray();
-        //dd($comprobantes[0]->idProveedor);
+        
         for ($i=0; $i<count($comprobantes); $i++ )
         {
             
@@ -32,7 +33,7 @@ class ComprobanteController extends Controller
 
     public function create(){
        
-        return view('comprobantes.create')->with('proveedores', Proveedor::all())->with('materias', MateriaPrima::all());
+        return view('comprobantes.create')->with('proveedores', Proveedor::all()->where('estado', true))->with('materias', MateriaPrima::all()->where('estado', true));
     
     }
 
@@ -61,7 +62,7 @@ class ComprobanteController extends Controller
         $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Crear Comprobante', 'tabla' => 'Comprobante', 'idTabla' => $comprobante->id  ];
         bitacora::create($bitacora);
 
-        return redirect()->route('index.comprobante');
+        return redirect()->route('index.comprobante')->with('info', 'Guardado con éxito');
     }
     public function view($id){
         $comprobante=Comprobante::find($id);
@@ -79,5 +80,22 @@ class ComprobanteController extends Controller
         $comprobante->idProveedor=$proveedor->Nombre;
         
         return view('comprobantes.view')->with('comprobante',$comprobante)->with('detalles', $detalles);
+    }
+
+    public function destroy($id){
+        $comprobante=Comprobante::find($id);
+        $comprobante->estado = 0;
+        $comprobante->save();
+
+        $detalles= Detalle_compra::all()->where('idComprobante', $id );
+        foreach ($detalles as $detalle) {
+            $materia= MateriaPrima::find($detalle->idMateria);
+            $materia->cantidad = $materia->cantidad - $detalle->cantidad;
+            $materia->save();
+        }
+
+        $bitacora=['usuario' => auth()->user()->nombre , 'accion' => 'Anular Comprobante', 'tabla' => 'Comprobante', 'idTabla' => $comprobante->id  ];
+        bitacora::create($bitacora);
+        return redirect()->route('index.comprobante')->with('info', 'Anulado con éxito');
     }
 }
