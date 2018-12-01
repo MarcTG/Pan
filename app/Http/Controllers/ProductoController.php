@@ -14,7 +14,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        return view('productos.index')->with('productos', Producto::all()); 
+        return view('productos.index')->with('productos', Producto::all()->where('estado', true)); 
     }
 
     /**
@@ -23,8 +23,8 @@ class ProductoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        return view('productos.create');
     }
 
     /**
@@ -35,7 +35,9 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $producto = Producto::create($request->all());
+        return redirect()->route('index.productos');
     }
 
     /**
@@ -46,7 +48,7 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        //
+        return view('productos.view')->with('producto', $producto);
     }
 
     /**
@@ -57,7 +59,7 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        //
+        return view('productos.edit')->with('producto', $producto);
     }
 
     /**
@@ -69,7 +71,10 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
-        //
+        
+        $producto->update($request->all());
+        
+        return redirect()->route('index.productos');
     }
 
     /**
@@ -80,6 +85,10 @@ class ProductoController extends Controller
     */
     public function destroy(Producto $producto)
     {
-        //
+        $producto->estado= false;
+
+        $producto->save();
+
+        return redirect()->back();
     }
 }

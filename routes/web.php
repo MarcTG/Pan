@@ -120,7 +120,56 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/proveedor/editar/{proveedor}', 'ProveedorController@edit')->name('edit.proveedor');
 
     Route::post('/proveedor/update/{proveedor}','ProveedorController@update')->name('update.proveedor');
+    
+   //Productos
+    
+   Route::get('/producto', 'ProductoController@index')->name('index.productos');
+   
+   Route::get('/producto/crear', 'ProductoController@create')->name('create.producto');
 
+   Route::get('/producto/{producto}', 'ProductoController@show')->name('show.productos');
+
+   Route::post('/producto/guardar', 'ProductoController@store')->name('store.producto');
+
+   Route::get('/producto/eliminar/{producto}', 'ProductoController@destroy')->name('delete.producto');
+
+   Route::get('/producto/editar/{producto}', 'ProductoController@edit')->name('edit.producto');
+
+   Route::post('/producto/update/{producto}','ProductoController@update')->name('update.producto');
+
+   //Recetas
+    
+   Route::get('/recetas', 'RecetaController@index')->name('index.receta');
+   
+   Route::get('/receta/crear', 'RecetaController@create')->name('create.receta');
+
+   Route::get('/receta/{receta}', 'RecetaController@show')->name('show.receta');
+
+   Route::post('/receta/guardar', 'RecetaController@store')->name('store.receta');
+
+   Route::get('/receta/eliminar/{receta}', 'RecetaController@destroy')->name('delete.receta');
+
+   Route::get('/receta/editar/{receta}', 'RecetaController@edit')->name('edit.receta');
+
+   Route::post('/receta/update/{receta}','RecetaController@update')->name('update.receta');
+
+   //inventario
+    
+   Route::get('/inventario', 'InventarioController@index')->name('index.inventario');
+   
+   Route::get('/inventario/crear', 'InventarioController@create')->name('create.inventario');
+
+   Route::get('/inventario/{inventario}', 'InventarioController@show')->name('show.inventario');
+
+   Route::post('/inventario/guardar', 'InventarioController@store')->name('store.inventario');
+
+   Route::get('/inventario/eliminar/{inventario}', 'InventarioController@destroy')->name('delete.inventario');
+
+   Route::get('/inventario/editar/{inventario}', 'InventarioController@edit')->name('edit.inventario');
+
+   Route::post('/inventario/update/{inventario}','InventarioController@update')->name('update.inventario');
+
+   Route::post('/inventario/finish/{inventario}','InventarioController@finish')->name('finish.inventario');
 
 });
 

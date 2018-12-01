@@ -101,6 +101,8 @@
 							<li class="active"><a href="#"><span class="title">Pedidos</span></a></li>
 							<li class="active"><a href="#"><span class="title">Clientes</span></a></li>
 							<li class="active"><a href="#"><span class="title">Facturas</span></a></li>
+
+							<li class="active"><a href="{{Route('index.productos')}}"><span class="title">Productos</span></a></li>
 	
 					</ul>
 				</li>
@@ -114,6 +116,8 @@
 							<li class="active"><a href="{{Route('index.comprobante')}}"><span class="title">Comprobantes</span></a></li>	
 						@endcan
 						
+						<li class="active"><a href="{{Route('index.inventario')}}"><span class="title">Inventario</span></a></li>
+						<li class="active"><a href="{{Route('index.receta')}}"><span class="title">Recetas</span></a></li>	
 					</ul>
 				</li>
 			</ul>

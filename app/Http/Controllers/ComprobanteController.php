@@ -14,6 +14,7 @@ use App\bitacora;
 class ComprobanteController extends Controller
 {
     public function index(){
+
         $comprobantes = DB::table('Comprobantes')
             ->where('estado', 1)
             ->orderBy('fecha','desc')
@@ -29,6 +30,7 @@ class ComprobanteController extends Controller
             $comprobantes[$i]->idEmpleado=$empleado->nombre . ' '. $empleado->apellidoP . ' ' . $empleado->apellidoM ;
         }
         return view('comprobantes.index')->with('comprobantes', $comprobantes);
+        
     }
 
     public function create(){
