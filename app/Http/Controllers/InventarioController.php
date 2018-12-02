@@ -8,7 +8,8 @@ use App\Receta;
 use App\MateriaPrima;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\StockProducto;
+use Carbon\Carbon;
 class InventarioController extends Controller
 {
     /**
@@ -124,7 +125,29 @@ class InventarioController extends Controller
        
         return redirect()->route('index.inventario');
     }
-    public function finish(Inventario $inventario){
+    public function finish(Request $request,Inventario $inventario){
+        $receta= Receta::find($inventario->idReceta);
+        $cantidad= ($receta->cantidadProducto * $inventario->porciones)- $request->perdida ;
+        
+        $time = Carbon::now();
+        $fecha =$time->day .'-' .$time->month.'-' .$time->year;
+        $id= $receta->idProducto;
+        $producto = DB::select(DB::raw(
+            "select stock_productos.id, count(productos.id) as cantidad
+            from productos, stock_productos
+            where productos.id=$id and stock_productos.fecha='$fecha'
+            group by stock_productos.id"
+        ));
+        
+        if (!isset($producto[0])){
+            StockProducto::create(['fecha'=>$fecha, 'idProducto'=> $id, 'cantidad'=>$cantidad]);
+            
+        }else{
+            $stock= StockProducto::find($producto[0]->id);
+            $stock->cantidad =$stock->cantidad + $cantidad;
+            $stock->save();
+        }
+        
         $inventario->state = true;
         $inventario->save();
     }

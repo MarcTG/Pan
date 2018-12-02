@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Producto;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ProductoController extends Controller
 {
@@ -13,7 +15,17 @@ class ProductoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   $time = Carbon::now();
+        $fecha =$time->day .'-' .$time->month.'-' .$time->year;
+        
+        $productos =DB::table('productos')
+            ->join('stock_productos', 'stock_productos.idProducto', '=', 'productos.id')
+            ->select('productos.id','productos.nombre','productos.precio', 'stock_productos.cantidad','stock_productos.vendido'  )
+            
+            ->where('estado', true)
+            ->get();
+            dd($productos);
+
         return view('productos.index')->with('productos', Producto::all()->where('estado', true)); 
     }
 

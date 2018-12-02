@@ -99,7 +99,7 @@
 						
 							<li class="active"><a href="#"><span class="title">Venta de Productos</span></a></li>
 							<li class="active"><a href="#"><span class="title">Pedidos</span></a></li>
-							<li class="active"><a href="#"><span class="title">Clientes</span></a></li>
+							<li class="active"><a href="{{Route('index.cliente')}}"><span class="title">Clientes</span></a></li>
 							<li class="active"><a href="#"><span class="title">Facturas</span></a></li>
 
 							<li class="active"><a href="{{Route('index.productos')}}"><span class="title">Productos</span></a></li>

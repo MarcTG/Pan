@@ -6,16 +6,19 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Cliente' => $baseDir . '/app/Cliente.php',
     'App\\Comprobante' => $baseDir . '/app/Comprobante.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Detalle_compra' => $baseDir . '/app/Detalle_compra.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Factura' => $baseDir . '/app/Factura.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',
     'App\\Http\\Controllers\\Auth\\RegisterController' => $baseDir . '/app/Http/Controllers/Auth/RegisterController.php',
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
     'App\\Http\\Controllers\\BitacoraController' => $baseDir . '/app/Http/Controllers/BitacoraController.php',
+    'App\\Http\\Controllers\\ClienteController' => $baseDir . '/app/Http/Controllers/ClienteController.php',
     'App\\Http\\Controllers\\ComprobanteController' => $baseDir . '/app/Http/Controllers/ComprobanteController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\DashboardController' => $baseDir . '/app/Http/Controllers/DashboardController.php',
@@ -26,6 +29,7 @@ return array(
     'App\\Http\\Controllers\\ProveedorController' => $baseDir . '/app/Http/Controllers/ProveedorController.php',
     'App\\Http\\Controllers\\RecetaController' => $baseDir . '/app/Http/Controllers/RecetaController.php',
     'App\\Http\\Controllers\\RoleController' => $baseDir . '/app/Http/Controllers/RoleController.php',
+    'App\\Http\\Controllers\\StockProductoController' => $baseDir . '/app/Http/Controllers/StockProductoController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',

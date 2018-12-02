@@ -171,6 +171,23 @@ Route::middleware(['auth'])->group(function(){
 
    Route::post('/inventario/finish/{inventario}','InventarioController@finish')->name('finish.inventario');
 
+   //Cliente
+    
+   Route::get('/cliente', 'ClienteController@index')->name('index.cliente');
+   
+   Route::get('/cliente/crear', 'ClienteController@create')->name('create.cliente');
+
+   Route::get('/cliente/{cliente}', 'ClienteController@show')->name('show.cliente');
+
+   Route::post('/cliente/guardar', 'ClienteController@store')->name('store.cliente');
+
+   Route::get('/cliente/eliminar/{cliente}', 'ClienteController@destroy')->name('delete.cliente');
+
+   Route::get('/cliente/editar/{cliente}', 'ClienteController@edit')->name('edit.cliente');
+
+   Route::post('/cliente/update/{cliente}','ClienteController@update')->name('update.cliente');
+
+   
 });
 
 

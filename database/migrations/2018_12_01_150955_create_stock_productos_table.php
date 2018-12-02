@@ -15,6 +15,11 @@ class CreateStockProductosTable extends Migration
     {
         Schema::create('stock_productos', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('fecha');
+            $table->unsignedInteger('cantidad')->default(0);
+            $table->unsignedInteger('vendido')->default(0);
+            $table->unsignedInteger('idProducto');
+            $table->foreign('idProducto')->references('id')->on('productos');
             $table->timestamps();
         });
     }
